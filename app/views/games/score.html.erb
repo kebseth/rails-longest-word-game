@@ -1,2 +1,22 @@
 <h1>Games#score</h1>
-<p>Find me in app/views/games/score.html.erb</p>
+<% array_of_random_letters = params[:token].gsub(/\W/, '').split('') %>
+
+<ul id="letters">
+  <% @letters.each do |letter| %>
+    <li class="given_letter"> <%=letter %> </li>
+  <% end %>
+</ul>
+
+<p>Your answer is: <span class="red"><%= @answer %></span></p>
+
+
+  <%if @result == :not_in_the_grid %>
+  <p>Sorry but <%= @answer %> does not seems to be in the grid </p>
+  <% elsif @result == :not_an_english_word?%>
+  <%= "coucou" %>
+  <% else %>
+  <%= "congrat" %>
+  <% end %>
+
+<p><%= link_to 'Retry', new_path %></p>
+
